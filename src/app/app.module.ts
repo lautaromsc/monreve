@@ -20,7 +20,8 @@ import { ExampleComponent } from './components/example/example.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
-import { MatListModule } from '@angular/material/list'; 
+import { MatListModule } from '@angular/material/list';
+import { Example2Component } from './components/example2/example2.component'; 
 
 let materials = [
   MatToolbarModule,
@@ -44,6 +45,7 @@ let materials = [
     SampleDialogComponent,
     ExampleComponent,
     SideNavComponent,
+    Example2Component,
   ],
   imports: [
     BrowserModule,

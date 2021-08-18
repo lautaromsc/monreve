@@ -19,6 +19,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ExampleComponent } from './components/example/example.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { MatListModule } from '@angular/material/list'; 
 
 let materials = [
   MatToolbarModule,
@@ -33,19 +35,21 @@ let materials = [
   MatInputModule,
   MatCheckboxModule,
   MatExpansionModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatListModule
 ]
 @NgModule({
   declarations: [
     AppComponent,
     SampleDialogComponent,
     ExampleComponent,
+    SideNavComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     materials,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

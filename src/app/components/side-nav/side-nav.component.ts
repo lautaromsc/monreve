@@ -1,5 +1,7 @@
 import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import {ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -7,7 +9,7 @@ import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.scss']
 })
-export class SideNavComponent  implements OnDestroy {
+export class SideNavComponent  implements OnDestroy{
 
   mobileQuery: MediaQueryList;
 
@@ -22,7 +24,11 @@ export class SideNavComponent  implements OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(
+    changeDetectorRef: ChangeDetectorRef, 
+    media: MediaMatcher,
+    private overlay: OverlayContainer
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -32,6 +38,30 @@ export class SideNavComponent  implements OnDestroy {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
- // shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
+  
+
+  shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
+
+
+
+  //dark mode
+
+  @HostBinding('class') className = '';
+
+  toggleControl = new FormControl(false);
+
+  
+  ngOnInit(): void {
+    this.toggleControl.valueChanges.subscribe((darkMode) => {
+      const darkClassName = 'darkMode';
+      this.className = darkMode ? darkClassName : '';
+      if (darkMode) {
+        this.overlay.getContainerElement().classList.add(darkClassName);
+      } else {
+        this.overlay.getContainerElement().classList.remove(darkClassName);
+      }
+    });
+  }
+
 
 }

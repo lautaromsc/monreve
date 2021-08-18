@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ExampleComponent } from './components/example/example.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 let materials = [
   MatToolbarModule,
@@ -32,6 +33,7 @@ let materials = [
   MatInputModule,
   MatCheckboxModule,
   MatExpansionModule,
+  MatSidenavModule
 ]
 @NgModule({
   declarations: [
